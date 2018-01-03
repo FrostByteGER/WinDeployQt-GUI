@@ -3,13 +3,17 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_WinDeployQtGUI.h"
 
-class WinDeployQtGUI : public QMainWindow
+
+namespace WinDeployQt::Gui
 {
-	Q_OBJECT
+	class WinDeployQtGUI : public QMainWindow
+	{
+		Q_OBJECT
 
-public:
-	WinDeployQtGUI(QWidget *parent = Q_NULLPTR);
+	public:
+		WinDeployQtGUI(QWidget *parent = Q_NULLPTR);
 
-private:
-	Ui::WinDeployQtGUIClass ui;
-};
+	private:
+		Ui::WinDeployQtGUIClass ui;
+	};
+}

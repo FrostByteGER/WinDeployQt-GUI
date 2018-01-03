@@ -8,9 +8,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_WinDeployQtGUI.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_WinDeployQtGUI.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_WinDeployQtGUI.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
