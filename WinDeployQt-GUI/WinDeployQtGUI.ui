@@ -1,0 +1,29 @@
+<UI version="4.0" >
+ <class>WinDeployQtGUIClass</class>
+ <widget class="QMainWindow" name="WinDeployQtGUIClass" >
+  <property name="objectName" >
+   <string notr="true">WinDeployQtGUIClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+	<x>0</x>
+	<y>0</y>
+	<width>600</width>
+	<height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>WinDeployQtGUI</string>
+  </property>
+  <widget class="QMenuBar" name="menuBar" />
+  <widget class="QToolBar" name="mainToolBar" />
+  <widget class="QWidget" name="centralWidget" />
+  <widget class="QStatusBar" name="statusBar" />
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="WinDeployQtGUI.qrc"/>
+ </resources>
+ <connections/>
+</UI>
