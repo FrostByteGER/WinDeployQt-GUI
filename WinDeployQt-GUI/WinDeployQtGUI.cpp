@@ -173,30 +173,54 @@ void WinDeployQt::Gui::WinDeployQtGUI::onCommandUpdate()
 	 * %23 = --list "PRINTTYPE"
 	 * %24 = verbose "???"
 	 */
+
+	QString printTypeString;
+
+	switch (printType)
+	{
+		case None: 
+			printTypeString = "none";
+			break;
+		case Source: 
+			printTypeString = "source";
+			break;
+		case Target:
+			printTypeString = "target";
+			break;
+		case Relative: 
+			printTypeString = "relative";
+			break;
+		case Mapping: 
+			printTypeString = "mapping";
+			break;
+		default: 
+			printTypeString = "none";
+			break;
+	}
+
 	commandToExecute = QString("%1 %2 %3 %4 %5 %6 %7 %8 %9 %10 %11 %12 %13 %14 %15 %16 %17 %18 %19 %20 %21 %22 %23 %24")
-		.arg("%1", binaryDir.isEmpty() ? "" : "\"" + binaryDir + "\"")
-		.arg("%2", dir.isEmpty() ? "" : "--dir \"" + dir + "\"")
-		.arg("%3", libDir.isEmpty() ? "" : "--libdir \"" + libDir + "\"")
-		.arg("%4", pluginDir.isEmpty() ? "" : "--plugindir \"" + pluginDir + "\"")
-		.arg("%5", qmlImportsDir.isEmpty() ? "" : "--qmldir \"" + qmlImportsDir + "\"")
-		.arg("%6", QString(buildMode == Release ? "--release" : "--debug"))
-		.arg("%7", QString(ui.ckBxDeployPDB->isChecked() ? "--pdb" : ""))
-		.arg("%8", QString(ui.ckBxForceUpdate->isChecked() ? "--force" : ""))
-		.arg("%9", QString(dryRun ? "--dry-run" : ""))
-		.arg("%10", QString(ui.ckBxPatchCoreLib->isChecked() ? "--no-patchqt" : ""))
-		.arg("%11", QString(ui.ckBxSkipPlugins->isChecked() ? "--no-plugins" : ""))
-		.arg("%12", QString(ui.ckBxSkipLibs->isChecked() ? "--no-libraries" : ""))
-		.arg("%13", QString(ui.ckBxDeployQuickImports->isChecked() ? "--no-quick-import" : ""))
-		.arg("%14", QString(ui.ckBxDeployTranslations->isChecked() ? "--no-translations" : ""))
-		.arg("%15", QString(ui.ckBxDeployD3DCompiler->isChecked() ? "--no-system-d3d-compiler" : ""))
-		.arg("%16", QString(ui.ckBxDeployCompilerRuntime->isChecked() ? "--compiler-runtime" : ""))
-		.arg("%17", QString(ui.ckBxSkipCompilerRuntime->isChecked() ? "--no-compiler-runtime" : ""))
-		.arg("%18", QString(ui.ckBxDeployWebkit2->isChecked() ? "--webkit2" : ""))
-		.arg("%19", QString(ui.ckBxSkipWebkit2->isChecked() ? "--no-webkit2" : ""))
-		.arg("%20", QString(ui.ckBxPrintProgressJSON->isChecked() ? "--json" : ""))
-		.arg("%21", QString(ui.ckBxForceDeployAngle->isChecked() ? "--angle" : "--no-angle"))
-		.arg("%22", QString(ui.ckBxDeployOpenGLSW->isChecked() ? "--no-opengl-sw" : ""))
-		.arg("%23", QString(""))
-		.arg("%24", QString(""));
+		.arg(binaryDir.isEmpty() ? "" : "\"" + binaryDir + "\"", dir.isEmpty() ? "" : "--dir \"" + dir + "\"",
+			libDir.isEmpty() ? "" : "--libdir \"" + libDir + "\"",
+			pluginDir.isEmpty() ? "" : "--plugindir \"" + pluginDir + "\"",
+			qmlImportsDir.isEmpty() ? "" : "--qmldir \"" + qmlImportsDir + "\"",
+			QString(buildMode == Release ? "--release" : "--debug"),
+			QString(ui.ckBxDeployPDB->isChecked() ? "--pdb" : ""),
+			QString(ui.ckBxForceUpdate->isChecked() ? "--force" : ""),
+			QString(dryRun ? "--dry-run" : ""))
+		.arg(QString(ui.ckBxPatchCoreLib->isChecked() ? "--no-patchqt" : ""),
+			QString(ui.ckBxSkipPlugins->isChecked() ? "--no-plugins" : ""),
+			QString(ui.ckBxSkipLibs->isChecked() ? "--no-libraries" : ""),
+			QString(ui.ckBxDeployQuickImports->isChecked() ? "--no-quick-import" : ""),
+			QString(ui.ckBxDeployTranslations->isChecked() ? "--no-translations" : ""),
+			QString(ui.ckBxDeployD3DCompiler->isChecked() ? "--no-system-d3d-compiler" : ""),
+			QString(ui.ckBxDeployCompilerRuntime->isChecked() ? "--compiler-runtime" : ""),
+			QString(ui.ckBxSkipCompilerRuntime->isChecked() ? "--no-compiler-runtime" : ""),
+			QString(ui.ckBxDeployWebkit2->isChecked() ? "--webkit2" : ""))
+		.arg(QString(ui.ckBxSkipWebkit2->isChecked() ? "--no-webkit2" : ""),
+			QString(ui.ckBxPrintProgressJSON->isChecked() ? "--json" : ""),
+			QString(ui.ckBxForceDeployAngle->isChecked() ? "--angle" : "--no-angle"),
+			QString(ui.ckBxDeployOpenGLSW->isChecked() ? "--no-opengl-sw" : ""),
+			printType != None ? QString("--list ") + printTypeString : "",
+			"");
 	qDebug() << commandToExecute.simplified();
 }
